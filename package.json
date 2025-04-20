@@ -1,0 +1,19 @@
+{
+  "name": "google_throw",
+  "version": "1.0.0",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "electron": "^35.2.0"
+  },
+  "dependencies": {
+    "typescript": "^5.8.3"
+  }
+}
