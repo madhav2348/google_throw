@@ -14,6 +14,8 @@
     "electron": "^35.2.0"
   },
   "dependencies": {
+    "rxdb": "^16.11.0",
+    "rxjs": "^7.8.2",
     "typescript": "^5.8.3"
   }
 }

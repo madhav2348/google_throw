@@ -152,10 +152,7 @@ overflow: hidden;
   justify-content: center;
   flex-wrap: wrap;
   align-items: center;
-  
   transition:  1s ease-in-out;
-
-
 }
 
 .allresult {
@@ -284,8 +281,6 @@ input::placeholder {
 .sidebar-items.activate .items.activate{
   background-color: #feefc3;
   border-radius: 0px 50px 50px 0px;
-
-
 }
 
 .sidebar-items.activate .items:hover{
@@ -303,6 +298,4 @@ input::placeholder {
 
 }
 .takenote:focus{
-
-
 }
