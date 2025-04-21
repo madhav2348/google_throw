@@ -38,53 +38,54 @@
         <div class="button">
           <img id="input-search" src="./public/search.svg" alt="">
         </div>
-
-
         <input id="input-text" type="text" placeholder="Search">
-
       </div>
     </div>
 
   </div>
   <div class="all-main">
 
-    <div id="sidebar-items" class="hidden">
-      <div id="items">
-        <div id="items-icon">
-          <img src="./public/bulb.svg" alt="">
-        </div>
-        <div id="items-label">Notes</div>
+    <div class="sidebar-items">
+      <div class="items">
+        <a>
+          <img class="items-icon" src="./public/bulb.svg" alt="">
+          <span class="items-label">Notes</span>
+        </a>
       </div>
-      <div id="items">
-        <div id="items-icon">
-          <img src="./public/bell.svg" alt="">
-        </div>
-        <div id="items-label">Reminders</div>
+      <div class="items">
+        <a>
+          <img class="items-icon" src="./public/bell.svg" alt="">
+          <span class="items-label">Reminders</span>
+        </a>
       </div>
-      <div></div>
-      <div id="items">
-        <div id="items-icon">
-          <img src="./public/draw.svg" alt="">
-        </div>
-        <div id="items-label">Edit labels</div>
+      <div class="items">
+        <a>
+          <img class="items-icon" src="./public/draw.svg" alt="">
+          <span class="items-label">Edit labels</span>
+        </a>
       </div>
-      <div id="items">
-        <div id="items-icon">
-          <img src="./public/archive.svg" alt="">
-        </div>
-        <div id="items-label">Archive</div>
+      <div class="items">
+        <a>
+          <img class="items-icon" src="./public/archive.svg" alt="">
+          <span class="items-label">Archive</span>
+        </a>
       </div>
-      <div id="items">
-        <div id="items-icon">
-          <img src="./public/bin.svg" alt="">
-        </div>
-        <div id="items-label">Bin</div>
+      <div class="items">
+        <a>
+          <img class="items-icon" src="./public/bin.svg" alt="">
+          <span class="items-label">Bin</span>
+        </a>
       </div>
     </div>
     <div class="main" id="main">
       <div class="element">
         <div class="note">
-          Take a note...
+          <form action="" class="">
+
+            <input type="text" id="title" name="title" placeholder="Title">
+            <input type="text" id="takenote" name="note" placeholder="Take a note...">
+          </form>
+          <!-- Take a note... -->
         </div>
         <div class="allbutton">
           <div class="button" title="New list" id="list"><img src="./public/check.svg" alt=""></div>

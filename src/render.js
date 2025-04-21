@@ -1,22 +1,31 @@
-const dialogBox = document
-  .getElementById(".note")
-  .addEventListener("click", () => {
-    document.createElement("dialog").dialog("open");
-  });
+// let dialogBox = document
+//   .getElementById("note")
+//   .addEventListener("click", () => {
+//     document.createElement("dialog").dialog("open");
+//   });
 
-const searchBar = document.querySelector(".search");
+// let searchBar = document.querySelector("search");
 
-searchBar.addEventListener("click", () => {
-  searchBar.classList.toggle("clicked");
+// searchBar.addEventListener("click", () => {
+//   searchBar.classList.toggle("clicked");
+// });
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   let imagesearch = document.getElementById("input-search");
+//   let inputtext = document.getElementById("input-text");
+
+//   if (imagesearch && inputtext) {
+//     imagesearch.addEventListener("click", () => {
+//       inputtext.focus();
+//     });
+//   }
+// });
+
+let sidebar = document.querySelector(".sidebar");
+let sidebarItemsMenu = document.querySelector(".sidebar-items");
+
+sidebar.addEventListener("click", () => {
+  sidebarItemsMenu.classList.toggle('activate')
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  const image = document.getElementById("input-search");
-  const input = document.getElementById("input-text");
 
-  if (image && input) {
-    image.addEventListener("click", () => {
-      input.focus();
-    });
-  }
-});
