@@ -7,8 +7,6 @@ let takenote = document.querySelector(".takenote");
 let titlenote = document.querySelector(".title");
 let sidebarItem = document.querySelectorAll(".items");
 
-let data = [];
-
 if (imagesearch && inputtext) {
   imagesearch.addEventListener("click", () => {
     console.log("clicked");

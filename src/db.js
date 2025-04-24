@@ -1,9 +1,7 @@
-import { isEmpty } from "rxjs";
-
 const { createRxDatabase } = require("rxdb");
 const { getRxStorageIpcRenderer } = require("rxdb/plugins/electron");
 var validator = require("validator");
-class RxDB {
+export class RxDB {
   constructor() {
     this.db = null;
   }
@@ -22,13 +20,13 @@ class RxDB {
           schema: {
             version: 0,
             title: "Google_Throw",
-            primaryKey: "key",
+            primaryKey: "id",
             type: "object",
 
             properties: {
               id: {
                 type: "string",
-                maxLength: "100",
+                maxLength: 100,
               },
               title: {
                 type: "string",
@@ -57,18 +55,23 @@ class RxDB {
       console.log(e);
     }
   }
-  removeData() {}
-  getAllData() {
-    this.db.noteCollection.find();
+  // removeData() {}
+  async getAllData() {
+    return await this.db.noteCollection.find().exec();
   }
-  getOneData(text) {
+  async getOneData(text) {
     try {
-      if (validator.isEmpty(text.trim())) {
-        const title = this.db.noteCollection.find({
-          selector: {
-            $or: [{ title: text }, { note: text }],
-          },
-        });
+      if (!validator.isEmpty(text.trim())) {
+        return await this.db.noteCollection
+          .find({
+            selector: {
+              $or: [
+                { title: { $regex: text, $option: "i" } },
+                { note: { $regex: text, $option: "i" } },
+              ],
+            },
+          })
+          .exec();
       }
     } catch (e) {
       console.log(e);
@@ -78,5 +81,3 @@ class RxDB {
     this.db.close();
   }
 }
-
-export default RxDB;

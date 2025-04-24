@@ -1,16 +1,19 @@
-const { app, BrowserWindow , ipcMain} = require("electron");
+const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("node:path");
-const { electron } = require("node:process");
+const { RxDB } = require("./db");
 
 const { exposeIpcMainRxStorage } = require("rxdb/plugins/electron");
 const { getRxStorageMemory } = require("rxdb/plugins/storage-memory");
+
+const db = new RxDB();
+
 function createWindow() {
   const win = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
-      nodeIntegration:true
+      nodeIntegration: true,
     },
   });
 
@@ -21,11 +24,14 @@ function createWindow() {
 
 app
   .whenReady()
-  .then(() => {
+  .then( async () => {
+    await db.rxdbInit();
+
     createWindow();
     app.on("activate", () => {
       if (BrowserWindow.getAllWindow.length === 0) {
         createWindow();
+
       }
     });
   })
