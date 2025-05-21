@@ -1,11 +1,15 @@
+
 let searchBar = document.querySelector("search");
 let imagesearch = document.getElementById("input-search");
 let inputtext = document.getElementById("input-text");
 let sidebar = document.querySelector(".sidebar");
 let sidebarItemsMenu = document.querySelector(".sidebar-items");
-let takenote = document.querySelector(".takenote");
-let titlenote = document.querySelector(".title");
 let sidebarItem = document.querySelectorAll(".items");
+
+let noteInput = document.getElementById("note");
+let noteTitle = document.getElementById("title");
+let noteContent = document.getElementById("takenote");
+let newResults = document.querySelector(".result");
 
 if (imagesearch && inputtext) {
   imagesearch.addEventListener("click", () => {
@@ -18,25 +22,34 @@ sidebar.addEventListener("click", () => {
   sidebarItemsMenu.classList.toggle("activate");
 });
 
-takenote.addEventListener("focus", () => {
-  titlenote.classList.toggle("focused");
+// sidebarItem.addEventListener("click", () => {
+//   console.log("clicked");
+//   sidebarItem.classList.toggle("activate");
+// });
+
+noteInput.addEventListener("click", () => {
+  noteTitle.classList.remove("note-hidden");
 });
 
-takenote.addEventListener("change", (event) => {
-  console.log(event.target.value);
+noteContent.addEventListener("input", () => {
+  noteContent.style.height = "auto";
+  noteContent.style.height = Math.min(noteContent.scrollHeight, 150) + "px";
 });
 
-titlenote.addEventListener("change", (event) => {
-  console.log(event.target.value);
-});
+document.addEventListener("click", (event) => {
+  if (!noteInput.contains(event.target)) {
+    if (noteContent.value || noteTitle.value) {
+      
+      const newNotes = document.createElement("div");
+      newNotes.innerHTML = `${noteTitle.value}  ${noteContent.value}`;
+      newNotes.className = 'allresult';
+      newResults.appendChild(newNotes);
+    } else {
 
-sidebarItem.addEventListener("click", () => {
-  console.log("clicked");
-  sidebarItem.classList.toggle("activate");
-});
-
-takenote.addEventListener("blur", (event) => {
-  if (event.relatedTarget !== titlenote) {
-    titlenote.classList.remove("focused");
+      noteTitle.value = '';
+      noteContent.value = '';
+      noteContent.style.height = 'auto';
+      noteTitle.classList.add("note-hidden");
+    }
   }
 });
