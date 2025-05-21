@@ -1,4 +1,3 @@
-
 let searchBar = document.querySelector("search");
 let imagesearch = document.getElementById("input-search");
 let inputtext = document.getElementById("input-text");
@@ -39,16 +38,16 @@ noteContent.addEventListener("input", () => {
 document.addEventListener("click", (event) => {
   if (!noteInput.contains(event.target)) {
     if (noteContent.value || noteTitle.value) {
-      
+      let noteData = { title: noteTitle.value, content: noteContent.value };
+      window.dataTransfer.send("toMain", noteData);
       const newNotes = document.createElement("div");
       newNotes.innerHTML = `${noteTitle.value}  ${noteContent.value}`;
-      newNotes.className = 'allresult';
+      newNotes.className = "allresult";
       newResults.appendChild(newNotes);
     } else {
-
-      noteTitle.value = '';
-      noteContent.value = '';
-      noteContent.style.height = 'auto';
+      noteTitle.value = "";
+      noteContent.value = "";
+      noteContent.style.height = "auto";
       noteTitle.classList.add("note-hidden");
     }
   }
