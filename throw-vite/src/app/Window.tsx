@@ -1,4 +1,13 @@
 import "./Window.css";
+import archive from "../assets/archive.svg";
+import bell from "../assets/bell.svg";
+import bin from "../assets/bin.svg";
+import bulb from "../assets/bulb.svg";
+import draw from "../assets/draw.svg";
+import image from "../assets/image.svg";
+import search from "../assets/search.svg";
+import check from "../assets/check.svg";
+import Notes from "./Notes";
 export default function Window() {
   return (
     <>
@@ -16,31 +25,66 @@ export default function Window() {
         </div>
         <div className="searchbar">
           <div className="search">
-            <div className="button">
-              <img id="input-search" src="" alt="" />
-            </div>
+            <img id="input-search" src={search} alt="" />
             <input type="text" id="search-text" placeholder="Search" />
           </div>
         </div>
       </div>
       <div className="all-main">
-        <div className="sidebar">
+        <div className="sidebaritems">
           <div className="items">
             <a>
-              <img src="" alt="" />
-              <span></span>
+              <img src={bulb} alt="" />
+              <span>Notes</span>
+            </a>
+          </div>
+          <div className="items">
+            <a>
+              <img src={bell} alt="" />
+              <span>Reminder</span>
+            </a>
+          </div>
+          <div className="items">
+            <a>
+              <img src={draw} alt="" />
+              <span>Edit labels</span>
+            </a>
+          </div>
+          <div className="items">
+            <a>
+              <img src={archive} alt="" />
+              <span>Archieve</span>
+            </a>
+          </div>
+          <div className="items">
+            <a>
+              <img src={bin} alt="" />
+              <span>Bin</span>
             </a>
           </div>
         </div>
-        <div className="notepad">
-          <div className="note-element">
-            <div id="note">
-              <input type="text" id="title" name="title" placeholder="Title"/>
-              <textarea
-                name="takenote"
-                id="takenote"
-                placeholder="Take a note..."
-              ></textarea>
+        <div>
+          <div className="notepad">
+            <div className="note-element">
+              <div id="note">
+                <textarea id="title" name="title" placeholder="Title" />
+                <textarea
+                  name="takenote"
+                  id="takenote"
+                  placeholder="Take a note..."
+                />
+              </div>
+            </div>
+          </div>
+          <div className="mainnote">
+            <span>PINNED</span>
+            <div className="allnotes">
+              {/* <Notes {...{ note: "Empty" }} />
+              <Notes {...{ note: "Empty" }} />
+              <Notes {...{ note: "Empty" }} />
+              <Notes {...{ note: "Empty" }} />
+              <Notes {...{ note: "Empty" }} />
+              <Notes {...{ note: "Empty" }} /> */}
             </div>
           </div>
         </div>

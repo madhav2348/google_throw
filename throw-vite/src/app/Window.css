@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row;
   border-bottom: 1px solid #e0e0e0;
-  /* justify-content: space-between; */
+  justify-content: start;
   align-items: center;
   padding-top: 0;
   position: fixed;
@@ -21,13 +21,20 @@
   padding: 15px;
   fill: #5f6368;
 }
+
+.search img {
+  padding: 10px;
+  padding-left: 30px;
+  height: 18px;
+  width: 18px;
+}
 .text-logo {
   color: #5f6368;
   font-size: 22px;
   padding: auto;
 }
 .sidebar:hover {
-  background-color: black;
+  background-color: #f1f3f4;
   border-radius: 50px;
   cursor: pointer;
 }
@@ -49,6 +56,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   color: #f1f3f4;
   background-color: #f1f3f4;
   align-self: start;
@@ -57,22 +65,32 @@
   width: 500px;
 }
 
+
 #search-text {
+  width: 100%;
+  height: 100%;
   padding-left: 10px;
   border: none;
   outline: none;
   border-color: transparent;
   background-color: #f1f3f4;
   color: #5f6368;
+  box-sizing: border-box;
 }
-
+#input-search {
+  padding: auto;
+}
 #search-text::placeholder {
-  font-family: "Roboto", sans-serif;
   font-weight: 200;
-  font-size: 16px;
+  font-size: 14px;
   font-feature-settings: "width" 100;
 }
-
+.notepad {
+  display: block;
+  margin-left: 200px;
+  margin-right: 300px;
+  margin-top: 40px;
+}
 .note-element {
   display: flex;
   flex-direction: row;
@@ -83,36 +101,94 @@
   box-shadow: 0px 0px 5px 3px #ccc;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: auto;
 }
 .note-element textarea {
-  padding: 10px;
+  margin: 10px;
   border: none;
   outline: none;
   resize: none;
   background-color: transparent;
+  box-sizing: border-box;
+  color: #5f6368;
+  width: calc(100% - 20px);
+  overflow: hidden;
 }
 
-.note-element input {
-  padding: 10px;
+#title {
+  margin: 10px;
+  margin-bottom: 0;
   border: none;
   outline: none;
   resize: none;
+  box-sizing: border-box;
+  width: calc(100% - 20px);
   background-color: transparent;
+  color: #5f6368;
+  font-weight: 500;
+  font-size: large;
 }
 
 #note {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 #title::placeholder {
-  font-family: "Roboto", sans-serif;
   font-weight: 200;
   font-size: 16px;
   font-feature-settings: "width" 100;
 }
 
+.items {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  align-self: center;
+  justify-content: start;
+  padding: 10px;
+  padding-left: 0;
+}
+.items a {
+  display: flex;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+}
+.items img {
+  height: 20px;
+  width: 20px;
+}
+.items img,
+span {
+  padding-left: 20px;
+  padding-right: 30px;
+}
 
-.all-main{
+.items:hover {
+  background-color: #feefc3;
+  border-radius: 0px 50px 50px 0px;
+}
 
+.sidebaritems {
+  margin-top: 10px;
+  width: 400px;
+}
+.all-main {
+  display: flex;
+  flex-direction: row;
+}
+
+.mainnote {
+  margin-top: 50px;
+}
+.allnotes {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.mainnote span {
+  font-size: x-small;
 }

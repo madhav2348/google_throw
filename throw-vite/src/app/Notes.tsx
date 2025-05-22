@@ -1,5 +1,11 @@
 import "./Notes.css";
-export default function Notes(title: string | "", note: string) {
+
+interface params {
+  title?: string;
+  note: string | "Empty";
+}
+
+const Notes: React.FC<params> = ({ title, note }) => {
   return (
     <div className="allresult">
       <div className="result">
@@ -8,4 +14,6 @@ export default function Notes(title: string | "", note: string) {
       </div>
     </div>
   );
-}
+};
+
+export default Notes;
