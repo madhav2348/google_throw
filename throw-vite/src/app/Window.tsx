@@ -8,13 +8,54 @@ import image from "../assets/image.svg";
 import search from "../assets/search.svg";
 import check from "../assets/check.svg";
 import Notes from "./Notes";
+import { useEffect, useRef, useState } from "react";
 export default function Window() {
+  const noteTitle = useRef<HTMLTextAreaElement>(null);
+  const noteInput = useRef<HTMLDivElement>(null);
+  const noteText = useRef<HTMLTextAreaElement>(null);
+
+  const [noteCollapse, setNoteCollapse] = useState(false);
+  const [sideCollaps, setsideCollapse] = useState(false);
+  const [title, setTitle] = useState("");
+  const [text, setText] = useState("");
+  const [allnote, setAllNote] = useState<
+    { heading?: string; content: string }[]
+  >([
+    { heading: "Shopping", content: "Buy milk and bread" },
+    { heading: "", content: "  " },
+    { content: "Quick idea: Start blog" },
+  ]);
+
+  useEffect(() => {
+    document.addEventListener("click", (event) => {
+      if (
+        noteInput.current &&
+        !noteInput.current.contains(event.target as Node)
+      ) {
+        if (title || text) {
+        setNoteCollapse(true);
+
+          console.log(allnote);
+          setAllNote((note) => [...note, { heading: title, content: text }]);
+        }
+        setTitle("");
+        setText("");
+        setNoteCollapse(false);
+      }
+    });
+  }, [title, text]);
+
   return (
     <>
       <div className="nav">
         <div className="navigation">
           <div className="logo">
-            <div className="sidebar">
+            <div
+              className="sidebar"
+              onClick={() => {
+                setsideCollapse(!sideCollaps);
+              }}
+            >
               <svg focusable="false" viewBox="0 0 24 24">
                 <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
               </svg>
@@ -35,43 +76,61 @@ export default function Window() {
           <div className="items">
             <a>
               <img src={bulb} alt="" />
-              <span>Notes</span>
+              {!sideCollaps === false ? <span>Notes</span> : ""}
             </a>
           </div>
           <div className="items">
             <a>
               <img src={bell} alt="" />
-              <span>Reminder</span>
+              {!sideCollaps === false ? <span>Reminder</span> : ""}
             </a>
           </div>
           <div className="items">
             <a>
               <img src={draw} alt="" />
-              <span>Edit labels</span>
+              {!sideCollaps === false ? <span>Edit labels</span> : ""}
             </a>
           </div>
           <div className="items">
             <a>
               <img src={archive} alt="" />
-              <span>Archieve</span>
+              {!sideCollaps === false ? <span>Archieve</span> : ""}
             </a>
           </div>
           <div className="items">
             <a>
               <img src={bin} alt="" />
-              <span>Bin</span>
+              {!sideCollaps === false ? <span>Bin</span> : ""}
             </a>
           </div>
         </div>
         <div>
           <div className="notepad">
             <div className="note-element">
-              <div id="note">
-                <textarea id="title" name="title" placeholder="Title" />
+              <div
+                ref={noteInput}
+                id="note"
+               
+              >
+                {noteCollapse === true ? (
+                  <textarea
+                    value={title}
+                    ref={noteTitle}
+                    id="title"
+                    name="title"
+                    placeholder="Title"
+                    onChange={(e) => setTitle(e.target.value)}
+                  />
+                ) : (
+                  ""
+                )}
                 <textarea
+                  value={text}
+                  ref={noteText}
                   name="takenote"
                   id="takenote"
                   placeholder="Take a note..."
+                  onChange={(e) => setText(e.target.value)}
                 />
               </div>
             </div>
@@ -79,12 +138,9 @@ export default function Window() {
           <div className="mainnote">
             <span>PINNED</span>
             <div className="allnotes">
-              {/* <Notes {...{ note: "Empty" }} />
-              <Notes {...{ note: "Empty" }} />
-              <Notes {...{ note: "Empty" }} />
-              <Notes {...{ note: "Empty" }} />
-              <Notes {...{ note: "Empty" }} />
-              <Notes {...{ note: "Empty" }} /> */}
+              {allnote.map((e, key) => (
+                <Notes key={key} title={e.heading} note={e.content} />
+              ))}
             </div>
           </div>
         </div>

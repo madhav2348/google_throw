@@ -1,19 +1,21 @@
 import "./Notes.css";
 
-interface params {
+interface Params {
   title?: string;
-  note: string | "Empty";
+  note: string | undefined;
 }
 
-const Notes: React.FC<params> = ({ title, note }) => {
+export default function Notes({ title, note }: Params) {
   return (
     <div className="allresult">
       <div className="result">
-        <div className="title">{title ?? ""}</div>
-        <div className="note">{note ?? "Empty"}</div>
+        {title ?? <div className="title">{title}</div>}
+        {(note === undefined && title === undefined) || (!title?.trim() && !note?.trim() )? (
+          <div className="note">Empty</div>
+        ) : (
+          <div className="note">{note}</div>
+        )}
       </div>
     </div>
   );
-};
-
-export default Notes;
+}
