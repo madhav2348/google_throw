@@ -17,7 +17,7 @@ export default function Window() {
   const [noteCollapse, setNoteCollapse] = useState(false);
   const [sideCollaps, setsideCollapse] = useState(false);
   const [title, setTitle] = useState("");
-  const [text, setText] = useState("");
+  const [text, setStateText] = useState("");
   const [allnote, setAllNote] = useState<
     { heading?: string; content: string }[]
   >([
@@ -27,22 +27,25 @@ export default function Window() {
   ]);
 
   useEffect(() => {
-    document.addEventListener("click", (event) => {
+    const handleClickOutside = (event: MouseEvent) => {
       if (
         noteInput.current &&
         !noteInput.current.contains(event.target as Node)
       ) {
         if (title || text) {
-        setNoteCollapse(true);
-
-          console.log(allnote);
+       
           setAllNote((note) => [...note, { heading: title, content: text }]);
+          // console.log(allnote);
         }
         setTitle("");
-        setText("");
+        setStateText("");
         setNoteCollapse(false);
       }
-    });
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
   }, [title, text]);
 
   return (
@@ -110,7 +113,7 @@ export default function Window() {
               <div
                 ref={noteInput}
                 id="note"
-               
+                onClick={() => setNoteCollapse(true)}
               >
                 {noteCollapse === true ? (
                   <textarea
@@ -130,7 +133,7 @@ export default function Window() {
                   name="takenote"
                   id="takenote"
                   placeholder="Take a note..."
-                  onChange={(e) => setText(e.target.value)}
+                  onChange={(e) => setStateText(e.target.value)}
                 />
               </div>
             </div>

@@ -9,7 +9,7 @@ export default function Notes({ title, note }: Params) {
   return (
     <div className="allresult">
       <div className="result">
-        {title ?? <div className="title">{title}</div>}
+        {title === undefined ?'': <div className="title">{title}</div>}
         {(note === undefined && title === undefined) || (!title?.trim() && !note?.trim() )? (
           <div className="note">Empty</div>
         ) : (
