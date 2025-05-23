@@ -1,5 +1,8 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("node:path");
+const { exposeIpcMainRxStorage } = require("rxdb/plugins/electron");
+const { getRxStorageMemory } = require("rxdb/plugins/storage-memory");
+const { wrappedValidateAjvStorage } = require("rxdb/plugins/validate-ajv");
 // const { RxDB } = require("./db");
 
 // const { exposeIpcMainRxStorage } = require("rxdb/plugins/electron");
@@ -13,22 +16,34 @@ function createWindow() {
     height: 600,
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
-      nodeIntegration: true,
+      nodeIntegration: false,
       // contextIsolation: true,
     },
   });
 
   //   win.load( path."app/index.html");
   win.loadFile(path.join(__dirname, "..", "app", "index.html"));
+  win.webContents.openDevTools();
   win.removeMenu();
 }
 
 app
   .whenReady()
   .then(async () => {
-    await db.rxdbInit();
-
+    //
+    const dbSuffix = new Date().getTime();
+    window.ipcMain.handle("getRxDB", () => "dbSuffix");
+    //
+    const storage = wrappedValidateAjvStorage({ storage: getRxStorageMemory });
+    //
+    exposeIpcMainRxStorage({
+      key: "main-storage",
+      ipcMain: ipcMain,
+      storage: storage,
+    });
+    //
     createWindow();
+
     app.on("activate", () => {
       if (BrowserWindow.getAllWindow.length === 0) {
         createWindow();
@@ -43,14 +58,14 @@ app.on("window-all-closed", () => {
   }
 });
 
-// app.on("ready", async () => {
-//   exposeIpcMainRxStorage({
-//     key: "main-storage",
-//     storage: getRxStorageMemory(),
-//     ipcMain: ipcMain,
-//   });
-// });
+app.on("ready", async () => {
+  exposeIpcMainRxStorage({
+    key: "main-storage",
+    storage: getRxStorageMemory(),
+    ipcMain: ipcMain,
+  });
+});
 
-// ipcMain.on("user_note", (event, data) => {
-//   console.log(data);
-// });
+ipcMain.on("user_note", (event, data) => {
+  console.log(data);
+});
