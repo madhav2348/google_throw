@@ -113,7 +113,7 @@ export default function Window() {
               <div
                 ref={noteInput}
                 id="note"
-                onClick={() => setNoteCollapse(true)}
+                
               >
                 {noteCollapse === true ? (
                   <textarea
@@ -127,6 +127,9 @@ export default function Window() {
                 ) : (
                   ""
                 )}
+                <div className="text-and-check">
+
+
                 <textarea
                   value={text}
                   ref={noteText}
@@ -134,7 +137,10 @@ export default function Window() {
                   id="takenote"
                   placeholder="Take a note..."
                   onChange={(e) => setStateText(e.target.value)}
+                 onClick={() => setNoteCollapse(true)}
                 />
+                <div className="check"><img  src={check} alt="" /></div>
+                </div>
               </div>
             </div>
           </div>
