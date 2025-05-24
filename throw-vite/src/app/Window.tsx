@@ -4,16 +4,19 @@ import bell from "../assets/bell.svg";
 import bin from "../assets/bin.svg";
 import bulb from "../assets/bulb.svg";
 import draw from "../assets/draw.svg";
-import image from "../assets/image.svg";
+// import image from "../assets/image.svg";
 import search from "../assets/search.svg";
 import check from "../assets/check.svg";
 import Notes from "./Notes";
+
 import { useEffect, useRef, useState } from "react";
+
 export default function Window() {
   const noteTitle = useRef<HTMLTextAreaElement>(null);
   const noteInput = useRef<HTMLDivElement>(null);
   const noteText = useRef<HTMLTextAreaElement>(null);
 
+  const [textCheck, setTextCheck] = useState(false);
   const [noteCollapse, setNoteCollapse] = useState(false);
   const [sideCollaps, setsideCollapse] = useState(false);
   const [title, setTitle] = useState("");
@@ -33,13 +36,13 @@ export default function Window() {
         !noteInput.current.contains(event.target as Node)
       ) {
         if (title || text) {
-       
           setAllNote((note) => [...note, { heading: title, content: text }]);
           // console.log(allnote);
         }
         setTitle("");
         setStateText("");
         setNoteCollapse(false);
+        setTextCheck(false);
       }
     };
     document.addEventListener("click", handleClickOutside);
@@ -110,11 +113,7 @@ export default function Window() {
         <div>
           <div className="notepad">
             <div className="note-element">
-              <div
-                ref={noteInput}
-                id="note"
-                
-              >
+              <div ref={noteInput} id="note">
                 {noteCollapse === true ? (
                   <textarea
                     value={title}
@@ -128,18 +127,31 @@ export default function Window() {
                   ""
                 )}
                 <div className="text-and-check">
-
-
-                <textarea
-                  value={text}
-                  ref={noteText}
-                  name="takenote"
-                  id="takenote"
-                  placeholder="Take a note..."
-                  onChange={(e) => setStateText(e.target.value)}
-                 onClick={() => setNoteCollapse(true)}
-                />
-                <div className="check"><img  src={check} alt="" /></div>
+                  {textCheck ? (
+                    <div>
+                      {" "}
+                      <svg focusable="false" viewBox="0 0 24 24">
+                        <path d="M0,-1 V1 M-1,0 H1" />
+                      </svg>
+                      <input type="text" placeholder="List item" />
+                    </div>
+                  ) : (
+                    <textarea
+                      value={text}
+                      ref={noteText}
+                      name="takenote"
+                      id="takenote"
+                      placeholder="Take a note..."
+                      onChange={(e) => setStateText(e.target.value)}
+                      onClick={() => setNoteCollapse(true)}
+                    />
+                  )}
+                  <div
+                    className={textCheck ? ".check-hidden" : ".check"}
+                    onClick={() => setTextCheck(true)}
+                  >
+                    <img src={check} alt="" />
+                  </div>
                 </div>
               </div>
             </div>

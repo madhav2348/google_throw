@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
+  <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <title>Google Throw</title>
+</head>
+
+<body style="margin: 0;">
+  <div class="nav">
+    <div class="navigation">
+
+
+      <div class="logos">
+        <div class="sidebar">
+          <svg focusable="false" viewbox="0 0 24 24">
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z">
+          </svg>
+        </div>
+        <img class="img-logo" id="img-logo" src="./public/throw.png" alt="">
+
+        <div class="text-logo">
+          Thow
+        </div>
+      </div>
+    </div>
+    <div class="searchbar">
+
+      <div class="search">
+        <div class="button">
+          <img id="input-search" src="./public/search.svg" alt="">
+        </div>
+        <input id="input-text" type="text" placeholder="Search">
+      </div>
+    </div>
+
+  </div>
+  <div class="all-main">
+
+    <div class="sidebar-items">
+      <div class="items">
+        <a>
+          <img class="items-icon" src="./public/bulb.svg" alt="">
+          <span class="items-label">Notes</span>
+        </a>
+      </div>
+      <div class="items">
+        <a>
+          <img class="items-icon" src="./public/bell.svg" alt="">
+          <span class="items-label">Reminders</span>
+        </a>
+      </div>
+      <div class="items">
+        <a>
+          <img class="items-icon" src="./public/draw.svg" alt="">
+          <span class="items-label">Edit labels</span>
+        </a>
+      </div>
+      <div class="items">
+        <a>
+          <img class="items-icon" src="./public/archive.svg" alt="">
+          <span class="items-label">Archive</span>
+        </a>
+      </div>
+      <div class="items">
+        <a>
+          <img class="items-icon" src="./public/bin.svg" alt="">
+          <span class="items-label">Bin</span>
+        </a>
+      </div>
+    </div>
+    <div class="main" id="main">
+      <div class="element">
+        <div class="allbutton">
+          <div class="button" title="New list" id="list"><img src="./public/check.svg" alt=""></div>
+          <div class="button" title="New note with drawing" id="draw"><img src="./public/draw.svg" alt=""></div>
+          <div class="button" title="New note with image" id="image"><img src="./public/image.svg" alt=""></div>
+        </div>
+      </div>
+
+      <div class="result">
+        <div class="allresult">
+
+          Empty note
+        </div>
+        <div class="allresult">
+
+          Empty note
+        </div>
+        <div class="allresult">
+
+          Empty note
+        </div>
+        <div class="allresult">
+
+          Empty note
+        </div>
+        <div class="allresult">
+
+          Empty note
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../src/render.js"></script>
+  <script src="../src/script.js"></script>
+
+</body>
+
+</html>
